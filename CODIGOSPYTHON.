@@ -1,0 +1,198 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMD+mM2Qpn0bTcAXR/QFdRE",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Mateo2alejo/hola-mundo/blob/main/CODIGOSPYTHON.\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "#CODIGOS PYTHON\n",
+        "##Adivinador Historico\n",
+        "En este codigo se adivina el año historico con operaciones matematicos y adivina la lista de de eventos"
+      ],
+      "metadata": {
+        "id": "adGW-7ILwJWV"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"¡Bienvenido al juego 'Adivina el Año Histórico' con Operaciones!\")\n",
+        "print(f\"La pista matemática es: {EnvironmentError}\")\n",
+        "\n",
+        "import random\n",
+        "\n",
+        "def adivinanza_ano_con_operaciones():\n",
+        "    eventos = {\n",
+        "        1492: \"Cristóbal Colón llega a América.\",\n",
+        "        1776: \"Independencia de los Estados Unidos.\",\n",
+        "        1969: \"El primer alunizaje en la Luna.\",\n",
+        "        1989: \"Caída del Muro de Berlín.\",\n",
+        "        1534: \"Fundación de Quito.\",\n",
+        "        1963: \"Asesinato de John F. Kennedy.\",\n",
+        "        1994: \"Fin del Apartheid en Sudáfrica.\",\n",
+        "        1914: \"Inicio de la Primera Guerra Mundial.\",\n",
+        "        1945: \"Final de la Segunda Guerra Mundial.\",\n",
+        "        1821: \"Independencia de México.\"\n",
+        "    }\n",
+        "\n",
+        "\n",
+        "    operaciones = {\n",
+        "        1492: ('+', 1000),  # 1492 + 1000 = 2492\n",
+        "        1776: ('*', 2),     # 1776 * 2 = 3552\n",
+        "        1969: ('-', 500),   # 1969 - 500 = 1469\n",
+        "        1989: ('/', 2),     # 1989 / 2 = 994.5 (Aquí se podría redondear si lo prefieres)\n",
+        "        1534: ('+', 600),   # 1534 + 600 = 2134\n",
+        "        1963: ('-', 200),   # 1963 - 200 = 1763\n",
+        "        1994: ('*', 3),     # 1994 * 3 = 5982\n",
+        "        1914: ('+', 100),   # 1914 + 100 = 2014\n",
+        "        1945: ('-', 300),   # 1945 - 300 = 1645\n",
+        "        1821: ('/', 3)      # 1821 / 3 = 607\n",
+        "    }\n",
+        "\n",
+        "\n",
+        "    año, evento = random.choice(list(eventos.items()))\n",
+        "\n",
+        "    # Obtener la operación correspondiente para ese año\n",
+        "    operacion, numero = operaciones[año]\n",
+        "\n",
+        "    # Generar la operación y la pista\n",
+        "    if operacion == '+':\n",
+        "        resultado_correcto = año + numero\n",
+        "        operacion_str = f\"{año} + {numero}\"\n",
+        "    elif operacion == '-':\n",
+        "        resultado_correcto = año - numero\n",
+        "        operacion_str = f\"{año} - {numero}\"\n",
+        "    elif operacion == '*':\n",
+        "        resultado_correcto = año * numero\n",
+        "        operacion_str = f\"{año} * {numero}\"\n",
+        "    elif operacion == '/':\n",
+        "        # Para la división, aseguramos que el resultado sea un número entero.\n",
+        "        resultado_correcto = round(año / numero)\n",
+        "        operacion_str = f\"{año} / {numero}\"\n",
+        "\n",
+        "    intentos = 3  # El jugador tiene 3 intentos para adivinar el año\n",
+        "\n",
+        "    print(\"¡Bienvenido al juego 'Adivina el Año Histórico' con Operaciones!\")\n",
+        "    print(f\"Pista: {evento}\")\n",
+        "    print(f\"La pista matemática es: {operacion_str}\")\n",
+        "\n",
+        "    while intentos > 0:\n",
+        "        try:\n",
+        "            # Pedimos al jugador que resuelva la operación y adivine el año\n",
+        "            respuesta_usuario = int(input(f\"Tienes {intentos} intentos restantes. ¿En qué año ocurrió este evento? \"))\n",
+        "\n",
+        "            # Verificamos si la respuesta es correcta\n",
+        "            if respuesta_usuario == año:\n",
+        "                print(f\"¡Correcto! El evento ocurrió en el año {año}.\")\n",
+        "                break\n",
+        "            else:\n",
+        "                print(\"Respuesta incorrecta. ¡Intenta de nuevo!\")\n",
+        "                intentos -= 1\n",
+        "\n",
+        "        except ValueError:\n",
+        "            # Si el usuario no ingresa un número, se muestra un mensaje de error\n",
+        "            print(\"Por favor, ingresa un número válido.\")\n",
+        "\n",
+        "    # Si se acabaron los intentos\n",
+        "    if intentos == 0:\n",
+        "        print(f\"Lo siento, te quedaste sin intentos. El año correcto era {año}.\")\n",
+        "\n",
+        "# Llamamos a la función para iniciar el juego\n",
+        "adivinanza_ano_con_operaciones()\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "Bhcra9DByAon"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# LOTERIA DE PAREJAS\n",
+        "En este código implementa un juego simple donde dos jugadores ingresan números y se determina un ganador basado en la comparación de esos números, con premios adicionales para ciertos números específicos.\n"
+      ],
+      "metadata": {
+        "id": "KVWtIl040Prk"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "print(\"-*-*-*-*¡Bienvenido al juego loteria en pareja 1x2!--*-*-*-*-*\")\n",
+        "print(\"-------------------------------------------------------\")\n",
+        "nombre1  = input (\"Ingrese su Nombre (Primer Participante----> : \")\n",
+        "print(\"-----------------------------------------------------------------\")\n",
+        "nombre2  = input (\"Ingrese su Nombre (Segundo  Participante  ---->: \")\n",
+        "print(\"---------------------------------------------------------------\")\n",
+        "print(\"/*/*/*/Recuerda que si ganas el premio es un Terreno de 150m/*/*/*\")\n",
+        "print(\":) :) :) :) :) :) :) :) :) :) :) :)\")\n",
+        "print(\" Que gane el (mayor) suerte!!!!\")\n",
+        "print(\":) :) :) :) :) :) :) :) :) :) :) :)\")\n",
+        "\n",
+        "\n",
+        "\n",
+        "intentos = 0\n",
+        "\n",
+        "\n",
+        "while True:\n",
+        "\n",
+        "    num1 = input(f\"Introdusca  su numero  de la loteria {nombre1}: de 4 dígitos: \")\n",
+        "    num2 = input(f\"Introdusca su numero de la nombre{nombre2}: de 4 dígitos:  \")\n",
+        "\n",
+        "    # Aumentar el contador de intentos\n",
+        "    intentos += 1\n",
+        "\n",
+        "    # Comparamos los dos números\n",
+        "    if num1 > num2:\n",
+        "        print(f\"¡Jugador {nombre1}  ganastes escribenos al 0989999999 para darte mas informacion de tu terreno! Tu número ({num1}) es mayor que el número de {nombre2} ({num2}).\")\n",
+        "        break\n",
+        "    elif num2 > num1:\n",
+        "        print(f\"¡Jugador {nombre2} ganastes escribenos al 0989999999 para darte mas informacion de tu terreno! Tu número ({num2}) es mayor que el número de {nombre1} ({num1}).\")\n",
+        "        break\n",
+        "    elif num1==7777:\n",
+        "        print(f\"!Jugador {nombre1} ganaste un Peluche de 1 metro  :D escribenos al 0989999999\")\n",
+        "        break\n",
+        "    elif num2==2222:\n",
+        "        print(f\"!Jugador {nombre2} ganaste un Par de Zapatos :v escribenos al 0989999999\")\n",
+        "        break\n",
+        "    elif num2==6666:\n",
+        "        print(f\"!Jugador {nombre1} ganaste un Viaje a Galapagos  :v escribenos al 0989999999\")\n",
+        "        break\n",
+        "    else:\n",
+        "        print(f\"Es un empate, ambos jugadores tienen el mismo número ({num1}). ¡Intenta de nuevo pero ya no te ganas el Terreno de 150m!\")\n"
+      ],
+      "metadata": {
+        "id": "jfYFGYKM0STN"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
